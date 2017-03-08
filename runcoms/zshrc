@@ -11,3 +11,28 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+alias open='xdg-open'
+alias cd..='cd ..'
+
+# Allows ctrl+backspace to delete previous word
+bindkey '^H' backward-kill-word
+
+
+# Allows jumping to previously visited directories with 'j foo'
+# Jump to child directory 'jc bar'
+source /etc/profile.d/autojump.zsh
+
+if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ]; then
+    exec startx
+fi
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+
+# Allows emacs to track cd directories
+if [ -n "$INSIDE_EMACS" ]; then
+  chpwd() { print -P "\033AnSiTc %d" }
+  print -P "\033AnSiTu %n"
+  print -P "\033AnSiTc %d"
+fi
+
+
