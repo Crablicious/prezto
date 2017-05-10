@@ -14,6 +14,8 @@ fi
 
 alias open='xdg-open'
 alias cd..='cd ..'
+#alias hs='optirun wine .wine/drive_c/Program\ Files/Blizzard\ App/Battle.net\ Launcher.exe'
+alias hs='wine .wine/drive_c/Program\ Files/Blizzard\ App/Battle.net\ Launcher.exe'
 
 # Allows ctrl+backspace to delete previous word
 bindkey '^H' backward-kill-word
@@ -35,4 +37,10 @@ if [ -n "$INSIDE_EMACS" ]; then
   print -P "\033AnSiTc %d"
 fi
 
+## Search history
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+[[ -n "${key[Up]}"   ]] && bindkey "${key[Up]}"   up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" down-line-or-beginning-search
 
